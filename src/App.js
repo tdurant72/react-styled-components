@@ -4,6 +4,10 @@ import styled from "styled-components";
 import Button from "./components/Button";
 import ExternalLink from "./components/ExternalLink";
 import PaginationWrapper from "./components/PaginationWrapper";
+import UsersList from "./components/UsersList";
+import UserDetails from "./components/UserDetails";
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const MainWrapper = styled.section`
   width: 100%;
@@ -15,8 +19,14 @@ const MainWrapper = styled.section`
 function App() {
   return (
     <MainWrapper>
-      <ExternalLink href="https://www.google.com">Google</ExternalLink>
-      <ExternalLink href="https://www.yahoo.com">Yahoo</ExternalLink>
+      <ExternalLink href="https://www.github.com">Github</ExternalLink>
+      <Router>
+        <Switch>
+          <Route path="/" exact component={UsersList} />
+          <Route path="/user/:userId" component={UserDetails} />
+        </Switch>
+      </Router>
+
       <PaginationWrapper page="middle">
         <Button>Page 1</Button>
         <Button primary>Page 3</Button>
